@@ -8,6 +8,8 @@ import {
   Download,
   FileText,
   Layers,
+  Star,
+  Users,
 } from "lucide-react";
 import { getActivities, getActivityBySlug } from "@/lib/activities";
 import { ActivityDetail } from "@/components/ActivityDetail";
@@ -49,10 +51,43 @@ export default async function ActivityPage({
         Back to activities
       </Link>
 
+      {/* Priority banner */}
+      {meta.priority && meta.group && (
+        <div
+          className="mb-6 flex items-center gap-3 rounded-xl border-2 px-5 py-3"
+          style={{
+            borderColor: meta.group_color || "#F59E0B",
+            backgroundColor: (meta.group_color || "#F59E0B") + "0A",
+          }}
+        >
+          <Star
+            size={18}
+            className="shrink-0 fill-amber-500 text-amber-500"
+          />
+          <span className="text-sm font-semibold text-text-primary">
+            Demo Day Priority Activity
+          </span>
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold text-white"
+            style={{ backgroundColor: meta.group_color || "#F59E0B" }}
+          >
+            <Users size={12} />
+            {meta.group}
+          </span>
+        </div>
+      )}
+
       {/* Section 1 — Header + Brief + Download */}
       <section className="mb-10">
         <h1 className="mb-4 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-          <span className="text-accent">
+          <span
+            className="text-accent"
+            style={
+              meta.priority && meta.group_color
+                ? { color: meta.group_color }
+                : undefined
+            }
+          >
             {String(meta.sort_order).padStart(2, "0")}.
           </span>{" "}
           {meta.name}
@@ -106,6 +141,24 @@ export default async function ActivityPage({
           Download Activity Pack
         </a>
       </section>
+
+      {/* Rationale — Why This Activity (priority only) */}
+      {activity.rationaleHtml && (
+        <section className="mb-10">
+          <div
+            className="rounded-xl border-l-4 p-6"
+            style={{
+              borderColor: meta.group_color || "#F59E0B",
+              backgroundColor: (meta.group_color || "#F59E0B") + "08",
+            }}
+          >
+            <div
+              className="prose"
+              dangerouslySetInnerHTML={{ __html: activity.rationaleHtml }}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Section 2 — The Clue (always visible) */}
       {activity.clueHtml && (

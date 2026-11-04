@@ -17,6 +17,9 @@ export interface ActivityMeta {
   multimodal: boolean;
   sort_order: number;
   practice_only: boolean;
+  priority?: boolean;
+  group?: string;
+  group_color?: string;
 }
 
 export interface Step {
@@ -42,6 +45,7 @@ export interface Activity {
   clueHtml: string;
   stepsData: StepsFile | null;
   whatGoodLooksLikeHtml: string;
+  rationaleHtml: string;
   contentComplete: boolean;
 }
 
@@ -70,6 +74,7 @@ async function loadActivity(slug: string): Promise<Activity> {
   const briefMd = readFileIfExists(path.join(dir, "brief.md"));
   const clueMd = readFileIfExists(path.join(dir, "clue.md"));
   const wglMd = readFileIfExists(path.join(dir, "what-good-looks-like.md"));
+  const rationaleMd = readFileIfExists(path.join(dir, "rationale.md"));
   const stepsRaw = readFileIfExists(path.join(dir, "steps.json"));
 
   const stepsData: StepsFile | null = stepsRaw ? JSON.parse(stepsRaw) : null;
@@ -79,6 +84,7 @@ async function loadActivity(slug: string): Promise<Activity> {
   const briefHtml = briefMd ? await markdownToHtml(briefMd) : "";
   const clueHtml = clueMd ? await markdownToHtml(clueMd) : "";
   const whatGoodLooksLikeHtml = wglMd ? await markdownToHtml(wglMd) : "";
+  const rationaleHtml = rationaleMd ? await markdownToHtml(rationaleMd) : "";
 
   return {
     meta,
@@ -86,6 +92,7 @@ async function loadActivity(slug: string): Promise<Activity> {
     clueHtml,
     stepsData,
     whatGoodLooksLikeHtml,
+    rationaleHtml,
     contentComplete,
   };
 }

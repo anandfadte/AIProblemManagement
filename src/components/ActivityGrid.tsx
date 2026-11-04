@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Clock, Layers, RotateCcw } from "lucide-react";
+import { Clock, Layers, RotateCcw, Star, Users } from "lucide-react";
 
 interface ActivityCard {
   id: string;
@@ -13,6 +13,9 @@ interface ActivityCard {
   tools: string[];
   multimodal: boolean;
   sort_order: number;
+  priority?: boolean;
+  group?: string;
+  group_color?: string;
 }
 
 export function ActivityGrid({
@@ -87,17 +90,51 @@ export function ActivityGrid({
           <Link
             key={a.slug}
             href={`/activities/${a.slug}`}
-            className="group rounded-xl border border-border bg-surface p-5 transition-all hover:border-accent/50 hover:shadow-md"
+            className={`group relative rounded-xl border bg-surface p-5 transition-all hover:shadow-md ${
+              a.priority
+                ? "border-2 hover:shadow-lg"
+                : "border-border hover:border-accent/50"
+            }`}
+            style={
+              a.priority && a.group_color
+                ? { borderColor: a.group_color + "66" }
+                : undefined
+            }
           >
             <div className="mb-3 flex items-start justify-between">
-              <span className="text-3xl font-bold text-accent/80">
-                {String(a.sort_order).padStart(2, "0")}
-              </span>
-              {a.multimodal && (
-                <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-accent">
-                  Multimodal
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-3xl font-bold"
+                  style={
+                    a.priority && a.group_color
+                      ? { color: a.group_color + "99" }
+                      : undefined
+                  }
+                >
+                  {!a.priority && (
+                    <span className="text-accent/80">
+                      {String(a.sort_order).padStart(2, "0")}
+                    </span>
+                  )}
+                  {a.priority && String(a.sort_order).padStart(2, "0")}
                 </span>
-              )}
+              </div>
+              <div className="flex items-center gap-1.5">
+                {a.priority && a.group && (
+                  <span
+                    className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold text-white"
+                    style={{ backgroundColor: a.group_color }}
+                  >
+                    <Users size={10} />
+                    {a.group}
+                  </span>
+                )}
+                {a.multimodal && (
+                  <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-accent">
+                    Multimodal
+                  </span>
+                )}
+              </div>
             </div>
 
             <h3 className="mb-3 text-base font-semibold leading-snug text-text-primary group-hover:text-accent transition-colors">

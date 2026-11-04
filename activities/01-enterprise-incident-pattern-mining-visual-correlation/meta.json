@@ -9,5 +9,8 @@
   "complexity": "High",
   "multimodal": true,
   "sort_order": 1,
-  "practice_only": false
+  "practice_only": false,
+  "priority": true,
+  "group": "Group A",
+  "group_color": "#3B82F6"
 }

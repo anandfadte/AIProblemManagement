@@ -15,5 +15,8 @@
   "complexity": "Very High",
   "multimodal": false,
   "sort_order": 11,
-  "practice_only": false
+  "practice_only": false,
+  "priority": true,
+  "group": "Group C",
+  "group_color": "#F59E0B"
 }
