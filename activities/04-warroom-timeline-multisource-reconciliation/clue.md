@@ -1,0 +1,1 @@
+The challenge is multi-source reconciliation. Service log, Slack thread, change log, audio brief. Think about what the AI needs to do when sources disagree. Does the prompt tell it to pick one, flag the contradiction, or surface a gap? That instruction is where the output's trustworthiness is built.

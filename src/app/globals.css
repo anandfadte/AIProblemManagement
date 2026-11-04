@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-code-bg: var(--code-bg);
+  --color-callout-bg: var(--callout-bg);
+  --color-callout-border: var(--callout-border);
+  --color-tool-chatgpt: #10a37f;
+  --color-tool-gemini: #4285f4;
+  --color-tool-claude: #CC785C;
+  --color-tool-mistral: #FA520F;
+  --color-prompt-bg: var(--prompt-bg);
+}
+
+:root {
+  --accent: #C0392B;
+  --accent-light: #E74C3C;
+  --surface: #ffffff;
+  --surface-alt: #f8f9fa;
+  --border-color: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --code-bg: #f3f4f6;
+  --callout-bg: #fef9f7;
+  --callout-border: #C0392B;
+  --prompt-bg: #1e2130;
+}
+
+.dark {
+  --surface: #0f1117;
+  --surface-alt: #1a1d27;
+  --border-color: #2d3142;
+  --text-primary: #f1f3f5;
+  --text-secondary: #c9cdd4;
+  --text-muted: #8891a0;
+  --code-bg: #1e2130;
+  --callout-bg: #1c1215;
+  --callout-border: #C0392B;
+  --prompt-bg: #1e2130;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+.prose {
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose h1 { font-size: 1.875rem; }
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.25rem; }
+
+.prose p {
+  margin-bottom: 1em;
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+
+.prose li {
+  margin-bottom: 0.25em;
+}
+
+.prose strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.prose code {
+  background: var(--code-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+.prose th, .prose td {
+  border: 1px solid var(--border-color);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.prose th {
+  background: var(--surface-alt);
+  font-weight: 600;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 0.25s ease-out;
+}

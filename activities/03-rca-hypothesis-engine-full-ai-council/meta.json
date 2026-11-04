@@ -1,0 +1,18 @@
+{
+  "id": "03",
+  "slug": "03-rca-hypothesis-engine-full-ai-council",
+  "name": "RCA Hypothesis Engine \u2014 Full AI Council",
+  "domain": "ITSM / RCA",
+  "pattern": "Multi-AI Council",
+  "duration_minutes": 30,
+  "tools": [
+    "Claude",
+    "ChatGPT",
+    "Gemini",
+    "Mistral"
+  ],
+  "complexity": "High",
+  "multimodal": false,
+  "sort_order": 3,
+  "practice_only": false
+}

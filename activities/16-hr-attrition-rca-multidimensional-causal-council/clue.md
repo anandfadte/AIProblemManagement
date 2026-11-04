@@ -1,0 +1,1 @@
+The CPO must choose between a compensation program OR a manager-development program. Not both. Think about how the prompt forces the AI to make that trade-off visible — rather than hedging and recommending both. The best RCA prompts REFUSE middle-ground answers.

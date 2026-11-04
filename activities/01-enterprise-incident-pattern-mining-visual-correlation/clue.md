@@ -1,0 +1,1 @@
+The AI is not being asked to find causes. It is being asked to find PATTERNS. Think about how to ask for grouping by behaviour, not by category label. What time-based detail should the output include so you can hand it to the next analyst?

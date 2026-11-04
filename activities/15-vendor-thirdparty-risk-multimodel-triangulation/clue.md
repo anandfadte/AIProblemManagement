@@ -1,0 +1,1 @@
+Three AI models independently assess vendor risk. Think about what inputs matter — not just the vendor's SLA numbers, but their regulatory exposure, their concentration risk, their track record. The prompt tells the models what to look at, not what to conclude.

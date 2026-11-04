@@ -1,0 +1,18 @@
+{
+  "id": "17",
+  "slug": "17-finance-reconciliation-variance-multitool-rca",
+  "name": "Finance Reconciliation Variance \u2014 Multi-Tool RCA",
+  "domain": "Finance / FP&A",
+  "pattern": "Multi-tool Pipeline",
+  "duration_minutes": 30,
+  "tools": [
+    "ChatGPT",
+    "Gemini",
+    "Claude",
+    "Mistral"
+  ],
+  "complexity": "High",
+  "multimodal": true,
+  "sort_order": 17,
+  "practice_only": false
+}

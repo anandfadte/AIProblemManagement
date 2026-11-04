@@ -1,0 +1,18 @@
+{
+  "id": "18",
+  "slug": "18-design-validate-a-tickettriage-agent",
+  "name": "Design & Validate a Ticket-Triage Agent",
+  "domain": "Agent Design / IT Service Desk",
+  "pattern": "Agent Design + 3-Model Validation",
+  "duration_minutes": 35,
+  "tools": [
+    "Claude",
+    "ChatGPT",
+    "Gemini",
+    "Mistral"
+  ],
+  "complexity": "High",
+  "multimodal": false,
+  "sort_order": 18,
+  "practice_only": false
+}
