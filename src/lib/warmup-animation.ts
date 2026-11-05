@@ -49,9 +49,9 @@ function getRoutes(difficulty: Difficulty): [number, number][] {
 
 function getDuration(difficulty: Difficulty): number {
   switch (difficulty) {
-    case "simple": return 15;
-    case "medium": return 20;
-    case "complex": return 30;
+    case "simple": return 8;
+    case "medium": return 10;
+    case "complex": return 12;
   }
 }
 
@@ -118,17 +118,17 @@ export function createAnimation(
   function getPhase(elapsed: number): string {
     if (difficulty === "simple") return "normal";
     if (difficulty === "medium") {
-      if (elapsed < 8) return "normal";
-      if (elapsed < 12) return "incident";
-      if (elapsed < 16) return "recovery";
+      if (elapsed < 3) return "normal";
+      if (elapsed < 5.5) return "incident";
+      if (elapsed < 8) return "recovery";
       return "normal";
     }
-    // complex
-    if (elapsed < 10) return "normal";
-    if (elapsed < 15) return "incident";
-    if (elapsed < 18) return "ai-analysis";
-    if (elapsed < 20) return "ai-recommendation";
-    if (elapsed < 25) return "rerouting";
+    // complex — 12s total
+    if (elapsed < 3) return "normal";
+    if (elapsed < 5) return "incident";
+    if (elapsed < 6.5) return "ai-analysis";
+    if (elapsed < 7.5) return "ai-recommendation";
+    if (elapsed < 10) return "rerouting";
     return "recovery";
   }
 
@@ -370,7 +370,7 @@ export function createAnimation(
     if (difficulty === "complex") {
       if (phase === "ai-analysis") {
         showAIPanel = true;
-        const aiElapsed = elapsed - 15;
+        const aiElapsed = elapsed - 5;
         aiLines = [];
         if (aiElapsed > 0.3) aiLines.push("Analyzing network topology...");
         if (aiElapsed > 1) aiLines.push("Identifying affected routes...");
@@ -387,7 +387,7 @@ export function createAnimation(
       if (phase === "recovery") {
         showAIPanel = false;
         aiRecommendation = "";
-        if (elapsed > 27) alertBanner = "OPERATIONS NORMAL — Incident mitigated successfully";
+        if (elapsed > 11) alertBanner = "OPERATIONS NORMAL — Incident mitigated successfully";
       }
     }
 

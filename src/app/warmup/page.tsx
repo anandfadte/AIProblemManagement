@@ -16,11 +16,14 @@ import {
   ChevronLeft,
   Copy,
   Check,
+  Lightbulb,
+  FileText,
 } from "lucide-react";
 import { createAnimation, type AnimationState, type AnimationController } from "@/lib/warmup-animation";
 import {
   scorePrompt,
   getReferencePrompt,
+  getSkeletonPrompt,
   submissionService,
   type Difficulty,
   type ScoringResult,
@@ -33,21 +36,21 @@ const DIFFICULTY_INFO: Record<Difficulty, { label: string; color: string; desc: 
     label: "Simple",
     color: "#22c55e",
     desc: "Describe a visual scene",
-    duration: "15 seconds",
+    duration: "8 seconds",
     detail: "3 cities connected by animated flows. No incidents. Focus on describing what you see — the map, the nodes, the movement.",
   },
   medium: {
     label: "Medium",
     color: "#f59e0b",
     desc: "Describe a scenario with a problem",
-    duration: "20 seconds",
+    duration: "10 seconds",
     detail: "5 cities with an operational incident and recovery. You need to describe what happens, not just what it looks like.",
   },
   complex: {
     label: "Complex",
     color: "#ef4444",
     desc: "Describe a full operational workflow",
-    duration: "30 seconds",
+    duration: "12 seconds",
     detail: "8 cities, a full incident lifecycle: detection, AI analysis, rerouting, and recovery. The ultimate prompt engineering challenge.",
   },
 };
@@ -63,6 +66,8 @@ export default function WarmupPage() {
   const [showRef, setShowRef] = useState(false);
   const [copied, setCopied] = useState<"mine" | "ref" | null>(null);
   const [participantName, setParticipantName] = useState("");
+  const [showSkeleton, setShowSkeleton] = useState(false);
+  const [showFullPrompt, setShowFullPrompt] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const controllerRef = useRef<AnimationController | null>(null);
@@ -96,6 +101,8 @@ export default function WarmupPage() {
     setPromptText("");
     setResult(null);
     setAnimatedScore(0);
+    setShowSkeleton(false);
+    setShowFullPrompt(false);
     setTimeout(() => startAnimation(), 200);
   }
 
@@ -357,6 +364,56 @@ export default function WarmupPage() {
               )}
             </div>
           </div>
+
+          {/* Hint Buttons */}
+          <div className="mb-4 flex items-center gap-2">
+            <button
+              onClick={() => setShowSkeleton(!showSkeleton)}
+              className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition-colors ${
+                showSkeleton
+                  ? "border-amber-500/40 bg-amber-500/10 text-amber-500"
+                  : "border-border text-text-muted hover:text-text-primary hover:border-amber-500/30"
+              }`}
+            >
+              <Lightbulb size={14} />
+              {showSkeleton ? "Hide Skeleton Prompt" : "See Skeleton Prompt"}
+            </button>
+            <button
+              onClick={() => setShowFullPrompt(!showFullPrompt)}
+              className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition-colors ${
+                showFullPrompt
+                  ? "border-blue-500/40 bg-blue-500/10 text-blue-500"
+                  : "border-border text-text-muted hover:text-text-primary hover:border-blue-500/30"
+              }`}
+            >
+              <FileText size={14} />
+              {showFullPrompt ? "Hide Full Prompt" : "See Full Prompt"}
+            </button>
+          </div>
+
+          {/* Skeleton Prompt */}
+          {showSkeleton && (
+            <div className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-amber-500">
+                Skeleton Prompt — fill in the blanks
+              </p>
+              <p className="text-sm leading-relaxed text-text-secondary italic">
+                {getSkeletonPrompt(difficulty)}
+              </p>
+            </div>
+          )}
+
+          {/* Full Prompt */}
+          {showFullPrompt && (
+            <div className="mb-4 rounded-xl border border-blue-500/30 bg-blue-500/5 p-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-500">
+                Full Reference Prompt
+              </p>
+              <p className="text-sm leading-relaxed text-text-secondary">
+                {getReferencePrompt(difficulty)}
+              </p>
+            </div>
+          )}
 
           <div className="flex items-center gap-3">
             <button

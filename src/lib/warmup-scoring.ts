@@ -173,6 +173,17 @@ export function getReferencePrompt(difficulty: Difficulty): string {
   }
 }
 
+export function getSkeletonPrompt(difficulty: Difficulty): string {
+  switch (difficulty) {
+    case "simple":
+      return "Create a ____-themed global operations visualization showing a ____ ____ with city locations displayed as ____, ____ nodes. Connect the cities with animated ____ showing ____ flows...";
+    case "medium":
+      return "Create a ____-themed Global Operations ____ ____ showing a world map with ____ major business locations as ____ nodes connected by animated ____ flows. Display KPI metrics for ____. Animate an operational ____ where one city node turns ____, transactions ____, and an ____ appears. Then show the system ____ — the node returns to ____, metrics ____...";
+    case "complex":
+      return "Create a premium enterprise Global Operations ____ ____ with a dark world map showing multiple global business locations connected by animated ____ flows. Display KPI metrics for ____. Animate business transactions moving between ____. Introduce an operational ____ at ____ that changes its status from ____ to ____. Display an AI ____ ____ that detects the anomaly and recommends ____. Dynamically ____ traffic through ____. Then show the system ____, ____ returning to green, alerts returning to ____ and the success rate ____...";
+  }
+}
+
 export function scorePrompt(prompt: string, difficulty: Difficulty): ScoringResult {
   const categories = getCategories(difficulty);
   const normalized = prompt.toLowerCase().replace(/[^a-z0-9\s]/g, " ");
