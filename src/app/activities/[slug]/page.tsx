@@ -19,6 +19,8 @@ export async function generateStaticParams() {
   return activities.map((a) => ({ slug: a.meta.slug }));
 }
 
+const basePath = process.env.NODE_ENV === "production" ? "/AIProblemManagement" : "";
+
 export default async function ActivityPage({
   params,
 }: {
@@ -134,7 +136,7 @@ export default async function ActivityPage({
 
         {/* Download button */}
         <a
-          href={`/downloads/${meta.slug}.zip`}
+          href={`${basePath}/downloads/${meta.slug}.zip`}
           className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
         >
           <Download size={16} />
