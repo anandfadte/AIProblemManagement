@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Zap } from "lucide-react";
 import { getActivities, getPatterns, getTools } from "@/lib/activities";
 import { ActivityGrid } from "@/components/ActivityGrid";
 import { FeaturedActivities } from "@/components/FeaturedActivities";
@@ -41,6 +43,29 @@ export default async function ActivitiesPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
+      {/* Warm-up Activity Banner */}
+      <Link
+        href="/warmup"
+        className="group mb-8 flex items-center justify-between rounded-xl border border-border bg-surface-alt p-4 transition-all hover:border-accent/40 hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+            <Zap size={20} className="text-accent" />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-text-primary group-hover:text-accent transition-colors">
+              Warm-up: AI Prompt Recreation Challenge
+            </p>
+            <p className="text-xs text-text-muted">
+              Practice prompt engineering with 3 difficulty levels before diving into the activities
+            </p>
+          </div>
+        </div>
+        <span className="hidden sm:block rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-text-muted group-hover:border-accent/40 group-hover:text-accent transition-colors">
+          Open Warm-up
+        </span>
+      </Link>
+
       {/* Featured Activities */}
       {featuredCards.length > 0 && (
         <FeaturedActivities activities={featuredCards} />
