@@ -17,5 +17,6 @@
   "practice_only": false,
   "priority": true,
   "group": "Group D",
-  "group_color": "#10B981"
+  "group_color": "#10B981",
+  "consensus": true
 }

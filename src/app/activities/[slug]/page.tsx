@@ -134,14 +134,25 @@ export default async function ActivityPage({
           </div>
         )}
 
-        {/* Download button */}
-        <a
-          href={`${basePath}/downloads/${meta.slug}.zip`}
-          className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
-        >
-          <Download size={16} />
-          Download Activity Pack
-        </a>
+        {/* Download buttons */}
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href={`${basePath}/downloads/${meta.slug}.zip`}
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
+          >
+            <Download size={16} />
+            Download Activity Pack
+          </a>
+          {meta.consensus && (
+            <a
+              href={`${basePath}/consensus/${meta.slug}.xlsx`}
+              className="inline-flex items-center gap-2 rounded-lg border-2 border-accent px-5 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10"
+            >
+              <FileText size={16} />
+              Download Consensus Workbook
+            </a>
+          )}
+        </div>
       </section>
 
       {/* Rationale — Why This Activity (priority only) */}

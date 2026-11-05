@@ -20,6 +20,7 @@ export interface ActivityMeta {
   priority?: boolean;
   group?: string;
   group_color?: string;
+  consensus?: boolean;
 }
 
 export interface Step {

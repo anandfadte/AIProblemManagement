@@ -18,5 +18,6 @@
   "practice_only": false,
   "priority": true,
   "group": "Group C",
-  "group_color": "#F59E0B"
+  "group_color": "#F59E0B",
+  "consensus": true
 }
